@@ -1,14 +1,28 @@
 package com.saasapp.business_management;
 
+import com.saasapp.business_management.entity.AppUser;
+import com.saasapp.business_management.repository.UserRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@SpringBootApplication
 public class BusinessManagementApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BusinessManagementApplication.class, args);
 	}
+
+    @Bean
+    CommandLineRunner init(UserRepository userRepository) {
+        return args -> {
+            AppUser user = new AppUser();
+            user.setName("Eshwar");
+            user.setEmail("eshwar@example.com");
+            userRepository.save(user);
+            System.out.println("✅ User saved successfully!");
+        };
+    }
 
 }
