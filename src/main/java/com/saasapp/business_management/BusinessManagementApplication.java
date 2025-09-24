@@ -14,15 +14,6 @@ public class BusinessManagementApplication {
 		SpringApplication.run(BusinessManagementApplication.class, args);
 	}
 
-    @Bean
-    CommandLineRunner init(UserRepository userRepository) {
-        return args -> {
-            AppUser user = new AppUser();
-            user.setName("Eshwar");
-            user.setEmail("eshwar@example.com");
-            userRepository.save(user);
-            System.out.println("✅ User saved successfully!");
-        };
-    }
+
 
 }
